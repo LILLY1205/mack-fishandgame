@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fish & Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="progressOverlay" class="progress-overlay hidden">
+        <div class="progress-box">
+            <div class="progress-label" id="progressLabel"></div>
+            <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+        </div>
+    </div>
+    <div id="vendorUI" class="menu-wrapper">
+        <div class="clipboard-container">
+            <div class="paper-area">
+                <div class="header-section">
+                    <h1 class="stamped-header" id="vendorName">Vendor</h1>
+                    <button class="close-tab" id="closeButton">Close</button>
+                </div>
+                <div id="sellSection" class="sell-section"></div>
+                <div id="categoryList" class="category-tabs"></div>
+                <div class="shop-layout">
+                    <div class="shop-col items-col">
+                        <h3 class="sub-heading" id="itemsTitle">Items</h3>
+                        <div id="itemGrid" class="item-grid"></div>
+                    </div>
+                    <div class="shop-col details-col">
+                        <h3 class="sub-heading" id="detailsTitle">Item Details</h3>
+                        <div id="itemDetails" class="details-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

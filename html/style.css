@@ -1,0 +1,423 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
+
+@font-face {
+    font-family: 'Crock';
+    src: url('font/crock.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    background: transparent;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.menu-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.menu-wrapper.visible {
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.clipboard-container {
+    width: 1150px;
+    height: 1550px;
+    background-image: url('img/clipboard.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    position: relative;
+    transform: translateY(100%);
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.7));
+    z-index: 10;
+}
+
+.menu-wrapper.visible .clipboard-container {
+    transform: translateY(19%);
+}
+
+.paper-area {
+    position: absolute;
+    top: 25%;
+    left: 14%;
+    right: 14%;
+    bottom: 8%;
+    padding: 20px 60px;
+    font-family: 'Courier Prime', monospace;
+    color: #1a1510;
+    display: flex;
+    flex-direction: column;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stamped-header {
+    font-family: 'Crock', serif;
+    font-size: 42px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #1a1510;
+    border-bottom: 2px solid #1a1510;
+    padding-bottom: 8px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    opacity: 0.95;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.close-tab {
+    background: transparent;
+    border: none;
+    padding: 5px 10px;
+    font-family: 'Crock', serif;
+    font-size: 16px;
+    cursor: pointer;
+    color: #1a1510;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.close-tab:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+.sub-heading {
+    font-family: 'Courier Prime', monospace;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #3e3226;
+    margin-bottom: 5px;
+    margin-top: 0;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.sell-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a1510;
+}
+
+.sell-btn {
+    padding: 8px 18px;
+    background: transparent;
+    border: 1px solid #1a1510;
+    color: #1a1510;
+    cursor: pointer;
+    font-family: 'Crock', serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+}
+
+.sell-btn:hover {
+    background: #1a1510;
+    color: #f5ebd2;
+}
+
+.sell-btn .price-hint {
+    display: block;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: 2px;
+    opacity: 0.8;
+}
+
+.sell-btn:hover .price-hint {
+    color: #f5ebd2;
+}
+
+.category-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1510;
+}
+
+.category-tabs:empty {
+    display: none;
+}
+
+.category-button {
+    padding: 4px 12px;
+    background: transparent;
+    border: 1px solid #3e3226;
+    color: #3e3226;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Courier Prime', monospace;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.category-button:hover {
+    text-decoration: underline;
+}
+
+.category-button.active {
+    background: #1a1510;
+    color: #f5ebd2;
+    border-color: #1a1510;
+}
+
+.shop-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 160px;
+    gap: 14px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.shop-col {
+    background: transparent;
+    border: 1px solid #3e3226;
+    padding: 12px;
+    overflow-y: auto;
+    min-width: 0;
+    max-height: 730px;
+}
+
+.shop-col::-webkit-scrollbar { width: 6px; }
+.shop-col::-webkit-scrollbar-track { background: transparent; }
+.shop-col::-webkit-scrollbar-thumb { background: #1a1510; border-radius: 2px; }
+
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.item-card {
+    background: transparent;
+    border: 1px solid #3e3226;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #1a1510;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+}
+
+.item-card:hover {
+    background: rgba(44, 36, 27, 0.05);
+}
+
+.item-card.selected {
+    border: 2px solid #1a1510;
+    background: rgba(44, 36, 27, 0.08);
+}
+
+.item-card h3 {
+    font-size: 11px;
+    color: #1a1510;
+    font-family: 'Courier Prime', monospace;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 4px;
+}
+
+.item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin: 0 auto 4px;
+    display: block;
+    filter: sepia(10%);
+}
+
+.price-text {
+    color: #2d5a1e;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 2px 0;
+}
+
+.stock-text {
+    color: #3e3226;
+    font-size: 11px;
+    font-style: italic;
+    margin: 2px 0;
+}
+
+.details-content {
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.details-content::-webkit-scrollbar { width: 6px; }
+.details-content::-webkit-scrollbar-track { background: transparent; }
+.details-content::-webkit-scrollbar-thumb { background: #1a1510; border-radius: 2px; }
+
+.details-content h3 {
+    font-family: 'Crock', serif;
+    font-size: 20px;
+    color: #1a1510;
+    margin-bottom: 8px;
+    text-decoration: none;
+}
+
+.details-content .item-image {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.details-content .price-text {
+    font-size: 14px;
+}
+
+.details-content .stock-text {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.details-content label {
+    color: #3e3226;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.details-content input[type="number"] {
+    width: 60px;
+    padding: 4px 6px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #1a1510;
+    color: #1a1510;
+    font-family: 'Courier Prime', monospace;
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+.details-content input[type="number"]:focus {
+    outline: none;
+    border-bottom: 2px solid #1a1510;
+}
+
+.action-button {
+    width: 100%;
+    padding: 8px;
+    background: transparent;
+    border: 1px solid #2d5a1e;
+    color: #2d5a1e;
+    font-family: 'Courier Prime', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    margin-top: 12px;
+}
+
+.action-button:hover {
+    text-decoration: underline;
+    background: rgba(45, 90, 30, 0.05);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 30px 10px;
+    font-style: italic;
+    color: #5a4a3a;
+    font-size: 14px;
+}
+
+.item-grid::-webkit-scrollbar { width: 6px; }
+.item-grid::-webkit-scrollbar-track { background: transparent; }
+.item-grid::-webkit-scrollbar-thumb { background: #1a1510; border-radius: 2px; }
+
+.progress-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.progress-overlay.hidden {
+    display: none !important;
+}
+
+.progress-box {
+    background: #ffffff;
+    border: 2px solid #000000;
+    padding: 24px 36px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.progress-label {
+    font-family: 'Crock', serif;
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.progress-bar-track {
+    width: 100%;
+    height: 14px;
+    background: #000000;
+    border: 1px solid #ffffff;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: #ff0000;
+}
